@@ -24,7 +24,13 @@ export class Calculator {
         const separatorList = ['\n', ','];
         let numberString = input;
         if (input.startsWith("//[")) {
-            const endOfSeparator = input.indexOf("]");
+            const multiSeparators = input.match(/\[(.*?)]/g);
+            if (multiSeparators && multiSeparators.length > 1) {
+                multiSeparators.forEach(separator => {
+                    separatorList.push(separator.substring(1, separator.length - 1).replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
+                })
+            }
+            const endOfSeparator = input.lastIndexOf("]");
             const separator = input.substring(3, endOfSeparator);
             separatorList.push(separator.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
             numberString = input.substring(endOfSeparator + 2);
