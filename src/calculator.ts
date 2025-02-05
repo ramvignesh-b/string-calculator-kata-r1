@@ -7,10 +7,13 @@ export class Calculator {
     }
 
     private parseNumbers(input: string): number[] {
+        const separatorList = ['\n', ','];
+        let numberString = input;
         if (input.startsWith("//")) {
             const separator = input[2];
-            return input.substring(4).split(separator).map(Number);
+            separatorList.push(separator);
+            numberString = input.substring(4);
         }
-        return input.replace("\n", ",").split(",").map(Number);
+        return numberString.replace(new RegExp(separatorList.join('|'), "g"), ",").split(",").map(Number);
     }
 }
