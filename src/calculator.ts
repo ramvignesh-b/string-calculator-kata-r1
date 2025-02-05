@@ -16,6 +16,11 @@ export class Calculator {
     }
 
     private parseNumbers(input: string): number[] {
+        let numberString = this.stripDelimiters(input);
+        return numberString.split(",").map(Number);
+    }
+
+    private stripDelimiters(input: string) {
         const separatorList = ['\n', ','];
         let numberString = input;
         if (input.startsWith("//[")) {
@@ -23,13 +28,12 @@ export class Calculator {
             const separator = input.substring(3, endOfSeparator);
             separatorList.push(separator.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
             numberString = input.substring(endOfSeparator + 2);
-            console.log(numberString)
         } else if (input.startsWith("//")) {
             const separator = input[2];
             separatorList.push(separator);
             numberString = input.substring(4);
         }
-        return numberString.replace(new RegExp(separatorList.join('|'), "g"), ",").split(",").map(Number);
+        return numberString.replace(new RegExp(separatorList.join('|'), "g"), ",");
     }
 
     private filterNumbers(numbers: number[]) {
