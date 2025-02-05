@@ -4,7 +4,8 @@ export class Calculator {
             return 0;
         const numbers = this.parseNumbers(input);
         this.validateNumbers(numbers);
-        return numbers.reduce((sum, number) => sum + number, 0);
+
+        return numbers.filter(number => number <= 1000).reduce((sum, number) => sum + number, 0);
     }
 
     private validateNumbers(numbers: number[]) {
