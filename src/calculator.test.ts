@@ -24,4 +24,8 @@ describe('calculator', () => {
         expect(calculator.add('1,2,3,4')).toBe(10);
     });
 
+    it('should handle newline as a separator', () => {
+        expect(calculator.add('1\n2,3')).toBe(6);
+    });
+
 });
