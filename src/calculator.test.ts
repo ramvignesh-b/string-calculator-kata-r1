@@ -20,4 +20,8 @@ describe('calculator', () => {
         expect(calculator.add('1,2')).toBe(3);
     });
 
+    it('should return the sum of arbitrary numbers separated by a comma', () => {
+        expect(calculator.add('1,2,3,4')).toBe(10);
+    });
+
 });
