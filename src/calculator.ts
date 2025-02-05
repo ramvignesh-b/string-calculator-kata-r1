@@ -3,11 +3,15 @@ export class Calculator {
         if (input === "")
             return 0;
         const numbers = this.parseNumbers(input);
+        this.validateNumbers(numbers);
+        return numbers.reduce((sum, number) => sum + number, 0);
+    }
+
+    private validateNumbers(numbers: number[]) {
         if (numbers.some(number => number < 0)) {
             const negatives = numbers.filter(number => number < 0);
             throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
         }
-        return numbers.reduce((sum, number) => sum + number, 0);
     }
 
     private parseNumbers(input: string): number[] {
