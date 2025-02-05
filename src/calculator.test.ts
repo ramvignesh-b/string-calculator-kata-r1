@@ -44,4 +44,8 @@ describe('calculator', () => {
         expect(calculator.add('//[***]\n1***2***3')).toBe(6);
     });
 
+    it('should handle multiple single-length separators', () => {
+        expect(calculator.add('//[*][%]\n1*2%3')).toBe(6);
+    });
+
 });
