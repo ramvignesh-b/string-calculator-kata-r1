@@ -48,4 +48,8 @@ describe('calculator', () => {
         expect(calculator.add('//[*][%]\n1*2%3')).toBe(6);
     });
 
+    it('should handle multiple separators with any character length', () => {
+        expect(calculator.add('//[foo][bar]\n1foo2bar3')).toBe(6);
+    });
+
 });
