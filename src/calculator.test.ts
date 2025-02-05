@@ -1,11 +1,19 @@
-import {describe, expect, it} from 'vitest';
+import {beforeEach, describe, expect, it} from 'vitest';
 import {Calculator} from './calculator';
 
 describe('calculator', () => {
+    let calculator: Calculator;
 
+    beforeEach(() => {
+        calculator = new Calculator();
+
+    })
     it('should return 0 for an empty string', () => {
-        let calculator = new Calculator();
         expect(calculator.add('')).toBe(0);
+    });
+
+    it('should return the same number for a single input', () => {
+        expect(calculator.add('1')).toBe(1);
     });
 
 });
