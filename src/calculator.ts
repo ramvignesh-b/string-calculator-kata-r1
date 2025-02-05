@@ -18,7 +18,13 @@ export class Calculator {
     private parseNumbers(input: string): number[] {
         const separatorList = ['\n', ','];
         let numberString = input;
-        if (input.startsWith("//")) {
+        if (input.startsWith("//[")) {
+            const endOfSeparator = input.indexOf("]");
+            const separator = input.substring(3, endOfSeparator);
+            separatorList.push(separator.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
+            numberString = input.substring(endOfSeparator + 2);
+            console.log(numberString)
+        } else if (input.startsWith("//")) {
             const separator = input[2];
             separatorList.push(separator);
             numberString = input.substring(4);
