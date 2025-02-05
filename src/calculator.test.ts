@@ -28,4 +28,8 @@ describe('calculator', () => {
         expect(calculator.add('1\n2,3')).toBe(6);
     });
 
+    it('should support custom separators', () => {
+        expect(calculator.add('//;\n1;2;3')).toBe(6);
+    });
+
 });
