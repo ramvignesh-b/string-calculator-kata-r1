@@ -2,10 +2,10 @@ export class Calculator {
     add(input: string): number {
         if (input === "")
             return 0;
-        const numbers = this.parseNumbers(input);
+        const numbers = this.filterNumbers(this.parseNumbers(input));
         this.validateNumbers(numbers);
 
-        return numbers.filter(number => number <= 1000).reduce((sum, number) => sum + number, 0);
+        return numbers.reduce((sum, number) => sum + number, 0);
     }
 
     private validateNumbers(numbers: number[]) {
@@ -24,5 +24,9 @@ export class Calculator {
             numberString = input.substring(4);
         }
         return numberString.replace(new RegExp(separatorList.join('|'), "g"), ",").split(",").map(Number);
+    }
+
+    private filterNumbers(numbers: number[]) {
+        return numbers.filter(number => number <= 1000)
     }
 }
