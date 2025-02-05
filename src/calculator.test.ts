@@ -3,8 +3,8 @@ import {Calculator} from './calculator';
 
 describe('calculator', () => {
 
-    it('should return 0 on empty string', () => {
-        const calculator = new Calculator();
+    it('should return 0 for an empty string', () => {
+        let calculator = new Calculator();
         expect(calculator.add('')).toBe(0);
     });
 
