@@ -25,14 +25,10 @@ export class Calculator {
         let numberString = input;
         if (input.startsWith("//[")) {
             const multiSeparators = input.match(/\[(.*?)]/g);
-            if (multiSeparators && multiSeparators.length > 1) {
-                multiSeparators.forEach(separator => {
-                    separatorList.push(separator.substring(1, separator.length - 1).replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
-                })
-            }
+            multiSeparators?.forEach(separator => {
+                separatorList.push(separator.substring(1, separator.length - 1).replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
+            })
             const endOfSeparator = input.lastIndexOf("]");
-            const separator = input.substring(3, endOfSeparator);
-            separatorList.push(separator.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
             numberString = input.substring(endOfSeparator + 2);
         } else if (input.startsWith("//")) {
             const separator = input[2];
