@@ -7,6 +7,10 @@ export class Calculator {
     }
 
     private parseNumbers(input: string): number[] {
+        if (input.startsWith("//")) {
+            const separator = input[2];
+            return input.substring(4).split(separator).map(Number);
+        }
         return input.replace("\n", ",").split(",").map(Number);
     }
 }
