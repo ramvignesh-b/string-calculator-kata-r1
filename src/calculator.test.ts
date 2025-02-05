@@ -40,4 +40,8 @@ describe('calculator', () => {
         expect(calculator.add('1,1001,2')).toBe(3);
     });
 
+    it('should handle arbitrary length of separators', () => {
+        expect(calculator.add('//[***]\n1***2***3')).toBe(6);
+    });
+
 });
