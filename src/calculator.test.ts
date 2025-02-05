@@ -32,4 +32,8 @@ describe('calculator', () => {
         expect(calculator.add('//;\n1;2;3')).toBe(6);
     });
 
+    it('should not allow negative numbers', () => {
+        expect(calculator.add('-1, 100')).toThrowError('error: negatives not allowed: -1');
+    });
+
 });
